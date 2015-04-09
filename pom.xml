@@ -13,6 +13,11 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  
+  <modules>
+    <module>lombok-maven-multimodule-lomboklib</module>
+    <module>lombok-maven-multimodule-other</module>
+  </modules>
 
   <dependencies>
     <dependency>
@@ -22,8 +27,4 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
-  <modules>
-    <module>lombok-maven-multimodule-lomboklib</module>
-    <module>lombok-maven-multimodule-other</module>
-  </modules>
 </project>
