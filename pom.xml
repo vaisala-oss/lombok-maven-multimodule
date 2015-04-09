@@ -5,7 +5,7 @@
   <groupId>io.github</groupId>
   <artifactId>lombok-maven-multimodule</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
 
   <name>lombok-maven-multimodule</name>
   <url>http://maven.apache.org</url>
@@ -22,4 +22,7 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
+  <modules>
+    <module>lombok-maven-multimodule-lomboklib</module>
+  </modules>
 </project>
