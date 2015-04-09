@@ -24,5 +24,6 @@
   </dependencies>
   <modules>
     <module>lombok-maven-multimodule-lomboklib</module>
+    <module>lombok-maven-multimodule-other</module>
   </modules>
 </project>
