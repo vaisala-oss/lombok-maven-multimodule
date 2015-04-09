@@ -24,4 +24,116 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok-maven-plugin</artifactId>
+        <version>1.14.8.0</version>
+        <dependencies>
+          <dependency>
+            <groupId>sun.jdk</groupId>
+            <artifactId>tools</artifactId>
+            <version>${java.version}</version>
+            <scope>system</scope>
+            <systemPath>${java.home}/../lib/tools.jar</systemPath>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>delombok</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>delombok</goal>
+            </goals>
+            <configuration>
+              <addOutputDirectory>false</addOutputDirectory>
+              <sourceDirectory>src/main/java</sourceDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>test-delombok</id>
+            <phase>generate-test-sources</phase>
+            <goals>
+              <goal>testDelombok</goal>
+            </goals>
+            <configuration>
+              <addOutputDirectory>false</addOutputDirectory>
+              <sourceDirectory>src/test/java</sourceDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.8</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <defaultVersion>${project.version}</defaultVersion>
+          <sourcepath>target/generated-sources/delombok</sourcepath>
+        </configuration>
+      </plugin>
+    </plugins>
+
+    <pluginManagement>
+      <plugins>
+        <!--This plugin's configuration is used to store Eclipse m2e settings 
+          only. It has no influence on the Maven build itself. -->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.projectlombok</groupId>
+                    <!-- This tells Eclipse not to execute lombok-maven-plugin 
+                      during the build -->
+                    <!-- In Eclipse, you should use the lombok plugin directly. -->
+                    <artifactId>
+                      lombok-maven-plugin
+                    </artifactId>
+                    <versionRange>
+                      [1.14.8.0,)
+                    </versionRange>
+                    <goals>
+                      <goal>delombok</goal>
+                      <goal>testDelombok</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore />
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 </project>
