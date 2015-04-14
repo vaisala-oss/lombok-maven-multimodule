@@ -28,6 +28,40 @@
     </dependency>
   </dependencies>
 
+  <profiles>
+    <profile>
+      <id>parent-delombok</id>
+      <activation>
+        <file>
+          <exists>${basedir}/README.MD</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.7</version>
+            <executions>
+              <execution>
+                <id>parent-antrun</id>
+                <phase>generate-sources</phase>
+                <inherited>false</inherited>
+                <configuration>
+                  <target>
+                    <echo message="Hi" />
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
   <build>
     <plugins>
       <plugin>
@@ -36,7 +70,6 @@
         <executions>
           <execution>
             <id>copy-resources</id>
-            <!-- here the phase you need -->
             <phase>validate</phase>
             <goals>
               <goal>copy-resources</goal>
@@ -139,7 +172,7 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>2.10.2</version>
         <configuration>
-          <!--sourcepath>target/generated-sources/delombok:src/main/java</sourcepath-->
+          <!--sourcepath>target/generated-sources/delombok:src/main/java</sourcepath -->
         </configuration>
       </plugin>
     </plugins>
