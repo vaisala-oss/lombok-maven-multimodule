@@ -71,18 +71,21 @@
                       </fileset>
                     </path>
                     <property name="lombok.jar"
-                      value="${maven.dependency.lombok.lombok.jar.path}" />
+                      value="${maven.dependency.org.projectlombok.lombok.jar.path}" />
                     <echo message="My Dependency JAR-Path: ${lombok.jar}" />
-                    <echo message="${lombok.path}" />
-                    <echo message="${project.name}" />
-                    <echo message="${maven.dependency.lombok.lombok.jar.path}" />
                   </target>
-                  <!--target name="javadoc"> <taskdef classname="lombok.delombok.ant.Tasks$Delombok" 
-                    classpath="lib/lombok.jar" name="delombok" /> <mkdir dir="target/generated-classes" 
-                    /> <delombok verbose="true" encoding="UTF-8" to="target/generated-classes" 
-                    from="src"> <format value="suppressWarnings:skip" /> </delombok> <mkdir dir="target/apidocs" 
-                    /> <javadoc sourcepath="target/generated-classes" defaultexcludes="yes" destdir="target/apidocs" 
-                    /> </target -->
+                  <!--target name="javadoc">
+                    <taskdef classname="lombok.delombok.ant.Tasks$Delombok"
+                      classpath="${maven.dependency.org.projectlombok.lombok.jar.path}" name="delombok" />
+                    <mkdir dir="target/generated-classes" />
+                    <delombok verbose="true" encoding="UTF-8"
+                      to="target/generated-classes" from="src">
+                      <format value="suppressWarnings:skip" />
+                    </delombok>
+                    <mkdir dir="target/apidocs" />
+                    <javadoc sourcepath="target/generated-classes"
+                      defaultexcludes="yes" destdir="target/apidocs" />
+                  </target-->
                 </configuration>
                 <goals>
                   <goal>run</goal>
