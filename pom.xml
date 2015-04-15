@@ -57,7 +57,7 @@
           </plugin>
           <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
-            <version>1.7</version>
+            <version>1.8</version>
             <executions>
               <execution>
                 <id>parent-antrun</id>
@@ -74,10 +74,10 @@
                       value="${org.projectlombok:lombok:jar}" />
                     <echo message="My Dependency JAR-Path: ${lombok.jar}" />
                   </target>
-                  <!--target name="javadoc">
-                    <taskdef classname="lombok.delombok.ant.Tasks$Delombok"
-                      classpathref="maven.plugin.classpath"
-                      name="delombok" />
+                  <target name="javadoc">
+                    <!--classpath="${org.projectlombok:lombok:jar}" -->
+                    <taskdef classname="lombok.delombok.ant.DelombokTask"
+                      classpathref="maven.plugin.classpath" name="delombok" />
                     <mkdir dir="target/generated-classes" />
                     <delombok verbose="true" encoding="UTF-8"
                       to="target/generated-classes" from="src">
@@ -86,7 +86,7 @@
                     <mkdir dir="target/apidocs" />
                     <javadoc sourcepath="target/generated-classes"
                       defaultexcludes="yes" destdir="target/apidocs" />
-                  </target-->
+                  </target>
                 </configuration>
                 <goals>
                   <goal>run</goal>
@@ -98,6 +98,13 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>1.14.8</version>
+              </dependency>
+              <dependency>
+                <groupId>sun.jdk</groupId>
+                <artifactId>tools</artifactId>
+                <version>${java.version}</version>
+                <scope>system</scope>
+                <systemPath>${java.home}/../lib/tools.jar</systemPath>
               </dependency>
             </dependencies>
           </plugin>
