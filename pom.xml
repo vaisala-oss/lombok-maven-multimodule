@@ -78,13 +78,13 @@
                     <!--classpath="${org.projectlombok:lombok:jar}" -->
                     <taskdef classname="lombok.delombok.ant.DelombokTask"
                       classpathref="maven.plugin.classpath" name="delombok" />
-                    <mkdir dir="target/generated-classes" />
+                    <mkdir dir="target/generated-sources" />
                     <delombok verbose="true" encoding="UTF-8"
-                      to="target/generated-classes" from="src">
+                      to="target/generated-sources" from="target/aggregated-sources">
                       <format value="suppressWarnings:skip" />
                     </delombok>
                     <mkdir dir="target/apidocs" />
-                    <javadoc sourcepath="target/generated-classes"
+                    <javadoc sourcepath="target/generated-sources"
                       defaultexcludes="yes" destdir="target/apidocs" />
                   </target>
                 </configuration>
