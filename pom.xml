@@ -71,12 +71,13 @@
                       </fileset>
                     </path>
                     <property name="lombok.jar"
-                      value="${maven.dependency.org.projectlombok.lombok.jar.path}" />
+                      value="${org.projectlombok:lombok:jar}" />
                     <echo message="My Dependency JAR-Path: ${lombok.jar}" />
                   </target>
                   <!--target name="javadoc">
                     <taskdef classname="lombok.delombok.ant.Tasks$Delombok"
-                      classpath="${maven.dependency.org.projectlombok.lombok.jar.path}" name="delombok" />
+                      classpathref="maven.plugin.classpath"
+                      name="delombok" />
                     <mkdir dir="target/generated-classes" />
                     <delombok verbose="true" encoding="UTF-8"
                       to="target/generated-classes" from="src">
@@ -92,6 +93,13 @@
                 </goals>
               </execution>
             </executions>
+            <dependencies>
+              <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.14.8</version>
+              </dependency>
+            </dependencies>
           </plugin>
         </plugins>
       </build>
