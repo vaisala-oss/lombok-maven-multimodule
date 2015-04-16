@@ -85,7 +85,7 @@
                     </delombok>
                     <mkdir dir="target/apidocs" />
                     <javadoc sourcepath="target/generated-sources"
-                      defaultexcludes="yes" destdir="target/apidocs" />
+                      defaultexcludes="yes" destdir="target/site/apidocs" />
                   </target>
                 </configuration>
                 <goals>
