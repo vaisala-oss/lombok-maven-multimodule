@@ -33,7 +33,7 @@
       <id>parent-delombok</id>
       <activation>
         <file>
-          <exists>${basedir}/README.MD</exists>
+          <exists>${basedir}/README.md</exists>
         </file>
       </activation>
       <build>
