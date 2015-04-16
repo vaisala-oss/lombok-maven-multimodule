@@ -30,6 +30,39 @@
 
   <profiles>
     <profile>
+      <id>child-resources</id>
+      <activation>
+        <file>
+          <exists>../README.md</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>2.7</version>
+            <executions>
+              <execution>
+                <id>copy-resources</id>
+                <phase>validate</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>../target/aggregated-sources</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>src/main/java</directory>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
       <id>parent-delombok</id>
       <activation>
         <file>
@@ -107,39 +140,6 @@
                 <systemPath>${java.home}/../lib/tools.jar</systemPath>
               </dependency>
             </dependencies>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>child-resources</id>
-      <activation>
-        <file>
-          <exists>../README.md</exists>
-        </file>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-resources-plugin</artifactId>
-            <version>2.7</version>
-            <executions>
-              <execution>
-                <id>copy-resources</id>
-                <phase>validate</phase>
-                <goals>
-                  <goal>copy-resources</goal>
-                </goals>
-                <configuration>
-                  <outputDirectory>../target/aggregated-sources</outputDirectory>
-                  <resources>
-                    <resource>
-                      <directory>src/main/java</directory>
-                    </resource>
-                  </resources>
-                </configuration>
-              </execution>
-            </executions>
           </plugin>
         </plugins>
       </build>
