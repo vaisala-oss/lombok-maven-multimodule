@@ -83,7 +83,7 @@
                       to="target/generated-sources" from="target/aggregated-sources">
                       <format value="suppressWarnings:skip" />
                     </delombok>
-                    <mkdir dir="target/apidocs" />
+                    <mkdir dir="target/site/apidocs" />
                     <javadoc sourcepath="target/generated-sources"
                       defaultexcludes="yes" destdir="target/site/apidocs" />
                   </target>
