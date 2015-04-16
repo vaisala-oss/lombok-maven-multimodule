@@ -61,7 +61,7 @@
             <executions>
               <execution>
                 <id>parent-antrun</id>
-                <phase>generate-sources</phase>
+                <phase>pre-site</phase>
                 <inherited>false</inherited>
                 <configuration>
                   <target>
