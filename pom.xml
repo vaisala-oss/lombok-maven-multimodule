@@ -60,24 +60,24 @@
             </executions>
           </plugin>
           <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <version>2.10</version>
-        <executions>
-          <execution>
-            <id>copy-dependencies</id>
-            <phase>compile</phase>
-            <!-- If reactor modules are excluded, this works. See MDEP-187-->
-            <goals>
-              <goal>copy-dependencies</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>../target/dependency</outputDirectory>
-              <excludeGroupIds>io.github</excludeGroupIds>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>2.10</version>
+            <executions>
+              <execution>
+                <id>copy-dependencies</id>
+                <phase>compile</phase>
+                <!-- If reactor modules are excluded, this works. See MDEP-187 -->
+                <goals>
+                  <goal>copy-dependencies</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>../target/dependency</outputDirectory>
+                  <excludeGroupIds>io.github</excludeGroupIds>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
       </build>
     </profile>
@@ -102,10 +102,10 @@
                   <target>
                     <path id="lombok.path">
                       <fileset dir="target/dependency">
-                        <include name="lombok*.jar" />
+                        <include name="*.jar" />
                       </fileset>
                     </path>
-                    <property name="lombok.jar"
+                    <property name="dependencies"
                       value="${org.projectlombok:lombok:jar}" />
                     <echo message="My Dependency JAR-Path: ${lombok.jar}" />
                   </target>
@@ -121,6 +121,25 @@
                     <mkdir dir="target/site/apidocs" />
                     <javadoc sourcepath="target/generated-sources"
                       defaultexcludes="yes" destdir="target/site/apidocs" />
+                  </target>
+                  <target>
+                    <property name="compile_classpath" refid="maven.compile.classpath" />
+                    <path id="project.class.path">
+                      <pathelement path="${compile_classpath}" />
+                      <fileset dir="target/dependency">
+                        <include name="*.jar" />
+                      </fileset>
+                    </path>
+                    <pathconvert pathsep=":" property="ant_classpath" refid="project.class.path"/>
+                    <echo message="ant_classpath:  ${ant_classpath}" />
+                    <property name="runtime_classpath" refid="maven.runtime.classpath" />
+                    <property name="test_classpath" refid="maven.test.classpath" />
+                    <property name="plugin_classpath" refid="maven.plugin.classpath" />
+
+                    <echo message="compile classpath: ${compile_classpath}" />
+                    <echo message="runtime classpath: ${runtime_classpath}" />
+                    <echo message="test classpath:    ${test_classpath}" />
+                    <echo message="plugin classpath:  ${plugin_classpath}" />
                   </target>
                 </configuration>
                 <goals>
