@@ -1,0 +1,44 @@
+<target>
+  <path id="lombok.path">
+    <fileset dir="target/dependency">
+      <include name="*.jar" />
+    </fileset>
+  </path>
+  <property name="dependencies" value="${org.projectlombok:lombok:jar}" />
+  <echo message="My Dependency JAR-Path: ${lombok.jar}" />
+</target>
+<target name="javadoc">
+  <!--classpath="${org.projectlombok:lombok:jar}" -->
+</target>
+<target name="javadoc">
+  <property name="compile_classpath" refid="maven.compile.classpath" />
+  <path id="project.class.path">
+    <pathelement path="${compile_classpath}" />
+    <fileset dir="target/dependency">
+      <include name="*.jar" />
+    </fileset>
+  </path>
+  <pathconvert pathsep=":" property="ant_classpath" refid="project.class.path" />
+
+  <echo message="ant_classpath:  ${ant_classpath}" />
+  <property name="plugin_artifacts" refid="plugin.artifacts" />
+  <echo message="plugin_artifacts: ${plugin_artifacts}" />
+  <property name="runtime_classpath" refid="maven.runtime.classpath" />
+  <property name="test_classpath" refid="maven.test.classpath" />
+  <property name="plugin_classpath" refid="maven.plugin.classpath" />
+
+  <echo message="compile classpath: ${compile_classpath}" />
+  <echo message="runtime classpath: ${runtime_classpath}" />
+  <echo message="test classpath:    ${test_classpath}" />
+  <echo message="plugin classpath:  ${plugin_classpath}" />
+  <taskdef classname="lombok.delombok.ant.DelombokTask"
+    classpath="${ant_classpath}" name="delombok" />
+  <mkdir dir="target/generated-sources" />
+  <delombok verbose="true" encoding="UTF-8" to="target/generated-sources"
+    from="target/aggregated-sources">
+    <format value="suppressWarnings:skip" />
+  </delombok>
+  <mkdir dir="target/site/apidocs" />
+  <javadoc sourcepath="target/generated-sources"
+    defaultexcludes="yes" destdir="target/site/apidocs" />
+</target>
