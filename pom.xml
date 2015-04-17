@@ -119,13 +119,14 @@
                 <inherited>false</inherited>
                 <configuration>
                   <target name="build_classpath">
+                    <property name="compile_classpath" refid="maven.compile.classpath" />
                     <path id="project.class.path">
                       <pathelement path="${compile_classpath}" />
                       <fileset dir="target/dependency">
                         <include name="*.jar" />
                       </fileset>
                     </path>
-                    <pathconvert pathsep=":" property="ant_classpath"
+                    <pathconvert property="ant_classpath"
                       refid="project.class.path" />
                     <echo message="ant_classpath:  ${ant_classpath}" />
                   </target>
@@ -156,7 +157,7 @@
               <!-- optional -->
               <workingDirectory>.</workingDirectory>
               <arguments>
-                <argument>${ant_classpath}</argument>
+                <argument>-cp ${ant_classpath}</argument>
               </arguments>
             </configuration>
           </plugin>
