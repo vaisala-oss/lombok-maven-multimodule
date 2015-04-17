@@ -1,6 +1,6 @@
 <project name="Aggregated Javadocs" default="javadoc" basedir=".">
   <target name="javadoc">
-    <!--echo message="classpath:  ${classpath}" /-->
+    <!--echo message="classpath: ${java.class.path}" /-->
     <taskdef classname="lombok.delombok.ant.DelombokTask"
       classpath="${ant_classpath}" name="delombok" />
     <mkdir dir="target/generated-sources" />
