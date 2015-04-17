@@ -27,6 +27,12 @@
       <version>1.14.8</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.9.4</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
   <profiles>
@@ -121,6 +127,7 @@
                   <target name="build_classpath">
                     <property name="compile_classpath" refid="maven.compile.classpath" />
                     <path id="project.class.path">
+                      <pathelement path="${java.home}/../lib/tools.jar" />
                       <pathelement path="${compile_classpath}" />
                       <fileset dir="target/dependency">
                         <include name="*.jar" />
@@ -153,11 +160,15 @@
               </execution>
             </executions>
             <configuration>
-              <executable>echo</executable>
+              <executable>java</executable>
               <!-- optional -->
               <workingDirectory>.</workingDirectory>
               <arguments>
-                <argument>-cp ${ant_classpath}</argument>
+                <argument>-classpath</argument>
+                <argument>${ant_classpath}</argument>
+                <argument>org.apache.tools.ant.Main</argument>
+                <argument>-buildfile</argument>
+                <argument>aggregate-javadocs.xml</argument>
               </arguments>
             </configuration>
           </plugin>
