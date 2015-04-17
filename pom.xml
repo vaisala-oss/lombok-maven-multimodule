@@ -80,7 +80,7 @@
                 </goals>
                 <configuration>
                   <outputDirectory>../target/dependency</outputDirectory>
-                  <excludeGroupIds>io.github</excludeGroupIds>
+                  <excludeGroupIds>${project.groupId}</excludeGroupIds>
                 </configuration>
               </execution>
             </executions>
