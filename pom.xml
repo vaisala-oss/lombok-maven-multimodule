@@ -13,6 +13,8 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.maven-dependency-plugin.version>2.10</project.maven-dependency-plugin.version>
+    <project.lombok.version>1.14.8</project.lombok.version>
+    <project.lombok-maven-plugin.version>1.14.8.0</project.lombok-maven-plugin.version>
   </properties>
 
   <modules>
@@ -24,7 +26,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.14.8</version>
+      <version>${project.lombok.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -180,9 +182,18 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok-maven-plugin</artifactId>
-        <version>1.14.8.0</version>
+        <version>${project.lombok-maven-plugin.version}</version>
         <dependencies>
           <dependency>
             <groupId>sun.jdk</groupId>
