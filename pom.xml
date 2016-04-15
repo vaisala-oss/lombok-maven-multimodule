@@ -13,8 +13,8 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.maven-dependency-plugin.version>2.10</project.maven-dependency-plugin.version>
-    <project.lombok.version>1.14.8</project.lombok.version>
-    <project.lombok-maven-plugin.version>1.14.8.0</project.lombok-maven-plugin.version>
+    <project.lombok.version>1.16.8</project.lombok.version>
+    <project.lombok-maven-plugin.version>1.16.8.0</project.lombok-maven-plugin.version>
   </properties>
 
   <modules>
