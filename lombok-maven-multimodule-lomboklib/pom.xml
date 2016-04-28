@@ -20,7 +20,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.14.8</version>
+      <version>${project.lombok.version}</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
@@ -30,7 +30,7 @@
       <plugin>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok-maven-plugin</artifactId>
-        <version>1.14.8.0</version>
+        <version>${project.lombok-maven-plugin.version}</version>
         <dependencies>
           <dependency>
             <groupId>sun.jdk</groupId>
@@ -116,9 +116,7 @@
                     <artifactId>
                       lombok-maven-plugin
                     </artifactId>
-                    <versionRange>
-                      [1.14.8.0,)
-                    </versionRange>
+                    <versionRange>[${lombok-maven-plugin.version},)</versionRange>
                     <goals>
                       <goal>delombok</goal>
                       <goal>testDelombok</goal>
