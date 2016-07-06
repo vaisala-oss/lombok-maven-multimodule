@@ -1,3 +1,7 @@
+<!--
+  Copyright (c) Vaisala Oyj 2015-2016.
+  Retaining this copyright notice is not required.
+-->
 <project name="Aggregated Javadocs" default="javadoc" basedir=".">
   <target name="javadoc">
     <!--echo message="classpath: ${java.class.path}" /-->
