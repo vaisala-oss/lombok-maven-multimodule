@@ -6,5 +6,5 @@ Example multi-module maven project featuring Project Lombok.
 To compile this example and generate aggregated javadocs, run
 ```sh
 mvn package
-mvn pre-site
+mvn -N pre-site
 ```
